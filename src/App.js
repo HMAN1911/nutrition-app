@@ -31,6 +31,12 @@ class App extends React.Component {
     ]
   }
 
+  calculateTotalCaloriesConsumed = () => {
+    return this.state.foodItems.reduce(function(previousItem, currentItem) {
+      return previousItem + currentItem.calories;
+    }, 0);
+  }
+
   render() {
     return (
       <div className="App">
@@ -45,7 +51,7 @@ class App extends React.Component {
             not inside the { } will just be processed as plain text.
          */}
         <div className="App-totalCount">
-          Calories Consumed: {this.state.caloriesConsumed}
+          Calories Consumed: {this.calculateTotalCaloriesConsumed()}
         </div>
       </div>
     );
