@@ -29,13 +29,39 @@ class App extends React.Component {
         name: 'apple, raw',
         calories: 40
       }
-    ]
+    ],
+    foodInputForm: {
+      nameValue: '',
+      caloriesValue: 0
+    }
   }
 
   calculateTotalCaloriesConsumed = () => {
     return this.state.foodItems.reduce(function(previousItem, currentItem) {
-      return previousItem + currentItem.calories;
+      return Number(previousItem) + Number(currentItem.calories);
     }, 0);
+  }
+
+  handleFoodInputFormChange = (fieldName, value) => {
+    var newFoodInputForm = Object.assign({}, this.state.foodInputForm);
+    newFoodInputForm[fieldName] = value;
+
+    this.setState({
+      foodInputForm: newFoodInputForm
+    });
+  }
+
+  handleAddFood = () => {
+    var newFoodItemsArray = Object.assign([], this.state.foodItems);
+    var newFoodItem = {
+      name: this.state.foodInputForm.nameValue,
+      calories: this.state.foodInputForm.caloriesValue
+    };
+    newFoodItemsArray.push(newFoodItem);
+
+    this.setState({
+      foodItems: newFoodItemsArray
+    });
   }
 
   render() {
@@ -54,7 +80,7 @@ class App extends React.Component {
         <div className="App-totalCount">
           Calories Consumed: {this.calculateTotalCaloriesConsumed()}
         </div>
-        <FoodInput />
+        <FoodInput onAddFood={this.handleAddFood} onInputChange={this.handleFoodInputFormChange} />
       </div>
     );
   }
