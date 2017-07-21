@@ -1,21 +1,54 @@
-import React, { Component } from 'react';
+// if you've done work in node,
+// the below would be equivalent to var React = require('react')
+import React from 'react';
+// we can import static assets like images thanks to some
+// preconfiguration coming from create-react-app.
 import logo from './logo.svg';
+// once we import a style sheet, that will be injected into
+// the document.
 import './App.css';
 
-class App extends Component {
+// classes are new in javascript 6 and beyond, and are not specific
+// to react. They are useful in many other circumstances too!
+// more information: https://ponyfoo.com/articles/es6-classes-in-depth
+
+// this component will be holding the majority of the 'state' of the application.
+class App extends React.Component {
+  state = {
+    calorieTarget: 0,
+    caloriesConsumed: 0,
+    foodItems: [
+      {
+        name: 'banana, raw',
+        calories: 70
+      },
+      {
+        name: 'apple, raw',
+        calories: 40
+      }
+    ]
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div className="App-itemList">
+          {this.state.foodItems.map(foodItem => {
+            return <div>{foodItem.name} - {foodItem.calories}</div>
+          })}
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {/* 
+            we need to tell javascript that we want the code between the { } 
+            to be executed or interpreted as regular old javascript. Anything
+            not inside the { } will just be processed as plain text.
+         */}
+        <div className="App-totalCount">
+          Calories Consumed: {this.state.caloriesConsumed}
+        </div>
       </div>
     );
   }
+
 }
 
 export default App;
