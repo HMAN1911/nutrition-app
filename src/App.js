@@ -8,7 +8,8 @@ import logo from './logo.svg';
 // the document.
 import './App.css';
 
-import FoodItem from './FoodItem'
+import FoodItem from './FoodItem';
+import FoodInput from './FoodInput';
 
 // classes are new in javascript 6 and beyond, and are not specific
 // to react. They are useful in many other circumstances too!
@@ -53,6 +54,7 @@ class App extends React.Component {
         <div className="App-totalCount">
           Calories Consumed: {this.calculateTotalCaloriesConsumed()}
         </div>
+        <FoodInput />
       </div>
     );
   }
