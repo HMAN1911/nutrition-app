@@ -8,6 +8,8 @@ import logo from './logo.svg';
 // the document.
 import './App.css';
 
+import FoodItem from './FoodItem'
+
 // classes are new in javascript 6 and beyond, and are not specific
 // to react. They are useful in many other circumstances too!
 // more information: https://ponyfoo.com/articles/es6-classes-in-depth
@@ -34,7 +36,7 @@ class App extends React.Component {
       <div className="App">
         <div className="App-itemList">
           {this.state.foodItems.map(foodItem => {
-            return <div>{foodItem.name} - {foodItem.calories}</div>
+            return <FoodItem item={foodItem} />
           })}
         </div>
         {/* 
