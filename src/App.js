@@ -8,8 +8,8 @@ import logo from './logo.svg';
 // the document.
 import './App.css';
 
-import FoodItem from './FoodItem';
 import FoodInput from './FoodInput';
+import FoodList from './FoodList';
 
 // classes are new in javascript 6 and beyond, and are not specific
 // to react. They are useful in many other circumstances too!
@@ -20,6 +20,7 @@ class App extends React.Component {
   state = {
     calorieTarget: 0,
     caloriesConsumed: 0,
+    islistPanelOpen: false,
     foodItems: [
       {
         name: 'banana, raw',
@@ -51,6 +52,12 @@ class App extends React.Component {
     });
   }
 
+  handleTogglePanel = () => {
+    this.setState({
+      islistPanelOpen: !this.state.islistPanelOpen
+    });
+  }
+
   handleAddFood = () => {
     var newFoodItemsArray = Object.assign([], this.state.foodItems);
     var newFoodItem = {
@@ -67,19 +74,20 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className="App-itemList">
-          {this.state.foodItems.map(foodItem => {
-            return <FoodItem item={foodItem} />
-          })}
-        </div>
         {/* 
             we need to tell javascript that we want the code between the { } 
             to be executed or interpreted as regular old javascript. Anything
             not inside the { } will just be processed as plain text.
          */}
         <div className="App-totalCount">
-          Calories Consumed: {this.calculateTotalCaloriesConsumed()}
+          <div className="App-totalCount--calorieDisplay">
+            {this.calculateTotalCaloriesConsumed()}
+          </div>
+          <div>
+            Calories Consumed
+          </div>
         </div>
+        <FoodList foodItems={this.state.foodItems} onPanelClick={this.handleTogglePanel} panelOpen={this.state.islistPanelOpen} />
         <FoodInput onAddFood={this.handleAddFood} onInputChange={this.handleFoodInputFormChange} />
       </div>
     );

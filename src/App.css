@@ -1,11 +1,105 @@
 .App {
+  font-family: Roboto;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(204, 204, 204, 1);
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  right: calc(50vw - 225px);
+  width: 450px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
 }
 
 .App-totalCount {
-  width: 30%;
+  padding: 40px;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 500;
 }
 
 .App-itemList {
+  margin-bottom: 20px;
+  background-color: rgba(224, 224, 224, 1);
+  width: 100%;
+  transition: .3s all;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.App-itemList p {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.App-itemList.open {
+  padding-bottom: 60px;
+}
+
+.App-itemList.closed {
+  text-align: center;
+  height: 60px;
+}
+
+.App-totalCount--calorieDisplay {
+  font-size: 6em;
+}
+
+.App-totalCount--calorieDisplay span {
+  font-size: 1em;
+}
+
+.App-foodInput input {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+.App-foodInput--inputWrapper {
+  width: 100%;
+}
+
+.App-foodInput button {
+  width: 130px;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+  float: right;
+  background-color: rgba(149, 149, 149, 1);
+  border: 1px solid rgba(149, 149, 149, 1);
+}
+
+.App-foodItem {
   width: 70%;
+  padding: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.App-foodItem-name {
+  font-size: 1.1em;
+  float: left;
+}
+
+.App-foodItem-calories {
+  font-size: 1.1em;
+  float: right;
+}
+
+.App-foodInput--foodName {
+  width: 170px;
+  margin-right: 14px;
+}
+
+.App-foodInput--calories {
+  width: 100px;
 }
